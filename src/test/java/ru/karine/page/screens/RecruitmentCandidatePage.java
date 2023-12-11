@@ -5,6 +5,7 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import lombok.SneakyThrows;
+import org.testng.Assert;
 import ru.karine.page.ScreenPage;
 
 import java.util.concurrent.TimeUnit;
@@ -28,5 +29,10 @@ public class RecruitmentCandidatePage extends ScreenPage<RecruitmentCandidatePag
         searchButton.click();
         waitForSpinner();
         return this;
+    }
+
+    @Step("Проверка, что кандидат отсутствует в списке")
+    public void checkCandidateDoesNotExist(String header, String value) {
+        Assert.assertThrows("Запись не была удалена", AssertionError.class, () -> getTable().getRowIndexByValue(header, value));
     }
 }

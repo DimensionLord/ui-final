@@ -117,7 +117,6 @@ public class RecruitmentTest extends BaseTest {
                 .waitListToLoad()
                 .saveTableValueToStash(0, "Candidate", "candidateToDelete")
                 .deleteRecord(0)
-                .filterByFirstName(Stash.getInstance().getFromStash("candidateToDelete"))
-                .checkRecordsCount(0);
+                .checkCandidateDoesNotExist("Candidate", Stash.getInstance().getFromStash("candidateToDelete"));
     }
 }

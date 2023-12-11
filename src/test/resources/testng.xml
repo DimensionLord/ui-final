@@ -16,14 +16,14 @@
             </class>
         </classes>
     </test>
-    <test name="Recruitment" enabled="false">
+    <test name="Recruitment">
         <parameter name="targetPage" value="Recruitment"/>
         <classes>
             <class name="ru.karine.tests.RecruitmentTest">
             </class>
         </classes>
     </test>
-    <test name="Claim">
+    <test name="Claim" enabled="false">
         <parameter name="targetPage" value="Claim"/>
         <classes>
             <class name="ru.karine.tests.ClaimTest">

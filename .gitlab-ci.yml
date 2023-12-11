@@ -3,6 +3,9 @@ stages:
   - history
   - report
   - publish_report
+variables:
+  UI_LOGIN: Admin
+  HRM_URL: https://opensource-demo.orangehrmlive.com/
 
 # Джоб по запуску автотестов
 ui_hrm_test:

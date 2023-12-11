@@ -15,8 +15,8 @@ public class ClaimTest extends BaseTest {
     @DataProvider
     public Object[][] provideEventData() {
         return new Object[][]{
-                {Faker.instance().gameOfThrones().character(), Faker.instance().gameOfThrones().quote(), "Active"},
-                {Faker.instance().gameOfThrones().character(), Faker.instance().gameOfThrones().quote(), "Inactive"}
+                {Faker.instance().gameOfThrones().character().replace('\'','`'), Faker.instance().gameOfThrones().quote().replace('\'','`'), "Active"},
+                {Faker.instance().gameOfThrones().character().replace('\'','`'), Faker.instance().gameOfThrones().quote().replace('\'','`'), "Inactive"}
         };
     }
 

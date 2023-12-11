@@ -3,20 +3,24 @@ package ru.karine;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
+import com.github.javafaker.Faker;
 import io.qameta.allure.Param;
 import io.qameta.allure.Step;
 import io.qameta.allure.model.Parameter;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Parameters;
 import ru.karine.page.BasePage;
 import ru.karine.page.screens.AuthPage;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Map;
-import java.util.Objects;
+import java.util.function.Function;
 
 /**
  * Тестовый класс, от которого наследуются все тесты экранов
@@ -38,8 +42,10 @@ public abstract class BaseTest {
         Configuration.browserCapabilities = capabilities;
     }
 
+
     /**
      * Метод, позваляющий извлекать значения, как из системных свойств, так и из параметров запуска (приоритет принадлежит параметрам запуска)
+     *
      * @param propertyKey ключ значения
      */
     private String getSystemProperty(String propertyKey) {
@@ -62,9 +68,10 @@ public abstract class BaseTest {
 
     /**
      * Общий метод для всех тестов, который обеспечивает авторизацию и переход к тестируемому экрану
-     * @param url адрес страницы приложения
-     * @param userName имя пользователя
-     * @param password пароль
+     *
+     * @param url        адрес страницы приложения
+     * @param userName   имя пользователя
+     * @param password   пароль
      * @param targetPage тестируемый экран
      */
     @Step("Открытие приложения на странице '{targetPage}'")
@@ -81,7 +88,7 @@ public abstract class BaseTest {
      */
     @BeforeMethod
     @Parameters({"targetPage"})
-    public void moveTo( String targetPage) {
+    public void moveTo(String targetPage) {
         String userName = getSystemProperty("UI_LOGIN");
         if (StringUtils.isBlank(userName)) {
             throw new RuntimeException("Необходимо указать имя пользователя через переменную 'UI_LOGIN'");

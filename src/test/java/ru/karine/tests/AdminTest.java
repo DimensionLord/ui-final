@@ -16,7 +16,7 @@ public class AdminTest extends BaseTest {
     @DataProvider
     public Object[][] provideJobData() {
         return new Object[][]{
-                {Faker.instance().yoda().quote(), Faker.instance().ancient().titan(), Faker.instance().crypto().sha512()}
+                {Faker.instance().yoda().quote().replace('\'','`'), Faker.instance().ancient().titan().replace('\'','`'), Faker.instance().crypto().sha512()}
         };
     }
 
@@ -45,7 +45,6 @@ public class AdminTest extends BaseTest {
                 .waitListToLoad()
                 .saveTableValueToStash(0,"Job Titles", "jobTitleToDelete")
                 .deleteRecord(0)
-                .waitListToLoad()
                 .checkJobDoesNotExist("Job Titles", Stash.getInstance().getFromStash("jobTitleToDelete"));
     }
 

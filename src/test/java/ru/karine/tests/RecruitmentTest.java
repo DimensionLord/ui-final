@@ -31,20 +31,20 @@ public class RecruitmentTest extends BaseTest {
     public Object[][] provideRecruitmentCandidateData() {
         return new Object[][]{
                 {Faker.instance().elderScrolls().creature(),
-                        Faker.instance().book().title().replaceAll("'","`"),
-                        Faker.instance().leagueOfLegends().champion(),
-                        Faker.instance().name().firstName(),
-                        Faker.instance().name().lastName(),
+                        Faker.instance().book().title().replace('\'','`'),
+                        Faker.instance().leagueOfLegends().champion().replace('\'','`'),
+                        Faker.instance().name().firstName().replace('\'','`'),
+                        Faker.instance().name().lastName().replace('\'','`'),
                         Faker.instance().internet().emailAddress(),
-                        Faker.instance().ancient().god(),
-                        Faker.instance().hobbit().quote()}
+                        Faker.instance().ancient().god().replace('\'','`'),
+                        Faker.instance().hobbit().quote().replace('\'','`')}
         };
     }
 
     @DataProvider
     public Object[][] provideRecruitmentVacancyData() {
         return new Object[][]{
-                {Faker.instance().elderScrolls().creature(), Faker.instance().book().title()}
+                {Faker.instance().elderScrolls().creature().replace('\'','`'), Faker.instance().book().title().replace('\'','`')}
         };
     }
 

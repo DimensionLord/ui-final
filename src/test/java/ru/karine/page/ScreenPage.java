@@ -36,7 +36,7 @@ public abstract class ScreenPage<T extends BasePage<T>> extends BasePage<T> {
     public T deleteRecord(int rowNum) {
         table.getRows().get(rowNum).$x(".//button[./i[contains(@class, 'trash')]]").click();
         submitDeleteButton.click();
-        return (T) this;
+        return waitListToLoad();
     }
 
     @Step("Ожидание загрузки экрана")

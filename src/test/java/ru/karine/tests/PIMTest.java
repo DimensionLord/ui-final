@@ -18,8 +18,8 @@ public class PIMTest extends BaseTest {
     @DataProvider
     public Object[][] provideEmployeeData() {
         return new Object[][]{
-                {Faker.instance().name().firstName(), Faker.instance().name().firstName(), Faker.instance().name().lastName(), Faker.instance().numerify("######")},
-                {Faker.instance().name().firstName(), "", Faker.instance().name().lastName(), Faker.instance().numerify("######")}
+                {Faker.instance().name().firstName().replace('\'','`'), Faker.instance().name().firstName().replace('\'','`'), Faker.instance().name().lastName().replace('\'','`'), Faker.instance().numerify("######")},
+                {Faker.instance().name().firstName().replace('\'','`'), "", Faker.instance().name().lastName().replace('\'','`'), Faker.instance().numerify("######")}
         };
     }
 

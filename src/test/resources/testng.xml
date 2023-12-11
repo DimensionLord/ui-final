@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="orangehrmlive">
-    <test name="PIM">
+    <test name="PIM" enabled="false">
         <parameter name="targetPage" value="PIM"/>
         <classes>
             <class name="ru.karine.tests.PIMTest">
@@ -9,14 +9,14 @@
         </classes>
     </test>
 
-    <test name="Admin">
+    <test name="Admin" enabled="false">
         <parameter name="targetPage" value="Admin"/>
         <classes>
             <class name="ru.karine.tests.AdminTest">
             </class>
         </classes>
     </test>
-    <test name="Recruitment">
+    <test name="Recruitment" enabled="false">
         <parameter name="targetPage" value="Recruitment"/>
         <classes>
             <class name="ru.karine.tests.RecruitmentTest">

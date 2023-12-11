@@ -14,6 +14,7 @@ public class RecruitmentCandidatePage extends ScreenPage<RecruitmentCandidatePag
     private final static SelenideElement firstNameCombobox = Selenide
             .$x("//div[contains(@class,'oxd-input-group')][.//label[text()='Candidate Name']]//input")
             .as("Имя кандидата");
+    private final static SelenideElement searchButton = Selenide.$x("//button [@type='submit']").as("Поиск");
 
     @Step("Инициализация создания нового подбора")
     public void addRecruitment() {
@@ -24,6 +25,8 @@ public class RecruitmentCandidatePage extends ScreenPage<RecruitmentCandidatePag
     @Step("Поиск кандидата по имени {firstName}")
     public RecruitmentCandidatePage filterByFirstName(String firstName) {
         selectOptionByFilter(firstNameCombobox, firstName);
+        searchButton.click();
+        waitForSpinner();
         return this;
     }
 }

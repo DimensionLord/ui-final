@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="orangehrmlive">
+    <test name="PIM">
+        <parameter name="targetPage" value="PIM"/>
+        <classes>
+            <class name="ru.karine.tests.PIMTest">
+            </class>
+        </classes>
+    </test>
+
+    <test name="Admin">
+        <parameter name="targetPage" value="Admin"/>
+        <classes>
+            <class name="ru.karine.tests.AdminTest">
+            </class>
+        </classes>
+    </test>
+    <test name="Recruitment">
+        <parameter name="targetPage" value="Recruitment"/>
+        <classes>
+            <class name="ru.karine.tests.RecruitmentTest">
+            </class>
+        </classes>
+    </test>
+    <test name="Claim">
+        <parameter name="targetPage" value="Claim"/>
+        <classes>
+            <class name="ru.karine.tests.ClaimTest">
+            </class>
+        </classes>
+    </test>
+
+</suite>

@@ -7,7 +7,7 @@ import ru.karine.BaseTest;
 import ru.karine.page.claim.AddEventPage;
 import ru.karine.page.screens.ClaimPage;
 import ru.karine.utils.Stash;
-
+@Test(groups = {"claim", "screen"},  testName = "Экран Claim")
 public class ClaimTest extends BaseTest {
     ClaimPage claimPage = new ClaimPage();
     AddEventPage addEventPage = new AddEventPage();

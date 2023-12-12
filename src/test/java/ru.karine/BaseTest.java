@@ -53,7 +53,7 @@ public abstract class BaseTest {
     /**
      * Общая конфигурация перед всеми тестами
      */
-    @BeforeSuite
+    @BeforeSuite(alwaysRun = true)
     public void initEnv() {
         configBrowser();
         //лисенер, добавляющий в отчет информацию о всех взаимодействиях с элементами
@@ -81,7 +81,7 @@ public abstract class BaseTest {
      * Общий метод для всех тестов, который обеспечивает авторизацию и переход к тестируемому экрану
      * автоматически получает имя пользователя, пароль, и url из свойств окружения
      */
-    @BeforeMethod
+    @BeforeMethod(groups = "screen")
     @Parameters({"targetPage"})
     public void moveTo(String targetPage) {
         String userName = getSystemProperty("UI_LOGIN");
@@ -107,7 +107,7 @@ public abstract class BaseTest {
     /**
      * Принудительно закрывает браузер после каждого теста
      */
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void killMe() {
         Selenide.closeWebDriver();
     }

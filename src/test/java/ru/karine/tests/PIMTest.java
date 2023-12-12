@@ -2,7 +2,6 @@ package ru.karine.tests;
 
 import com.github.javafaker.Faker;
 import com.github.javafaker.Name;
-import lombok.SneakyThrows;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.karine.BaseTest;
@@ -10,6 +9,7 @@ import ru.karine.page.pim.AddEmployeePage;
 import ru.karine.page.screens.PIMPage;
 import ru.karine.utils.Stash;
 
+@Test(groups = {"pim", "screen"},  testName = "Экран PIM")
 public class PIMTest extends BaseTest {
 
     PIMPage pimPage = new PIMPage();
@@ -18,8 +18,8 @@ public class PIMTest extends BaseTest {
     @DataProvider
     public Object[][] provideEmployeeData() {
         return new Object[][]{
-                {Faker.instance().name().firstName().replace('\'','`'), Faker.instance().name().firstName().replace('\'','`'), Faker.instance().name().lastName().replace('\'','`'), Faker.instance().numerify("######")},
-                {Faker.instance().name().firstName().replace('\'','`'), "", Faker.instance().name().lastName().replace('\'','`'), Faker.instance().numerify("######")}
+                {Faker.instance().name().firstName().replace('\'', '`'), Faker.instance().name().firstName().replace('\'', '`'), Faker.instance().name().lastName().replace('\'', '`'), Faker.instance().numerify("######")},
+                {Faker.instance().name().firstName().replace('\'', '`'), "", Faker.instance().name().lastName().replace('\'', '`'), Faker.instance().numerify("######")}
         };
     }
 

@@ -3,11 +3,25 @@ stages:
   - history
   - report
   - publish_report
-variables:
-  UI_LOGIN: Admin
-  HRM_URL: https://opensource-demo.orangehrmlive.com/
 
-# Джоб по запуску автотестов
+variables:
+  UI_LOGIN:
+    value: Admin
+    description: Имя пользователя
+  HRM_URL:
+    value: https://opensource-demo.orangehrmlive.com/
+    description: url OrangeHRML
+  TEST_GROUPS:
+    value: screen
+    description: группы тестов для запуска
+    options:
+      - screen
+      - pim
+      - admin
+      - claim
+      - recruitment
+
+      # Джоб по запуску автотестов
 ui_hrm_test:
   image: maven:3.9.6-amazoncorretto-17
   stage: test
@@ -15,7 +29,7 @@ ui_hrm_test:
   #(например - не пройдут тесты)
   allow_failure: true
   script:
-    - mvn clean test
+    - mvn clean test -Dtest.groups=$TEST_GROUPS
   artifacts:
     #'when: always' - мы всегда будем получать артефакты - и в случае успеха, и в случае падения джобы
     #для нас это актуально, поскольку тесты не всегда будут на 100% успешными:)

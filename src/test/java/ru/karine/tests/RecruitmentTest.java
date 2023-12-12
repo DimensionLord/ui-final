@@ -16,6 +16,7 @@ import ru.karine.utils.Stash;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+@Test(groups = {"recruitment", "screen"},  testName = "Экран Recruitment")
 public class RecruitmentTest extends BaseTest {
 
     RecruitmentCandidatePage recruitmentCandidatePage = new RecruitmentCandidatePage();

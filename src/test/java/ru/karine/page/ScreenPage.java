@@ -7,7 +7,6 @@ import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import lombok.AccessLevel;
 import lombok.Getter;
-import ru.karine.page.screens.PIMPage;
 import ru.karine.page.utils.Table;
 import ru.karine.utils.Stash;
 
@@ -32,10 +31,11 @@ public abstract class ScreenPage<T extends BasePage<T>> extends BasePage<T> {
         return (T) this;
     }
 
-   @Step("Удаление записи из списка")
+    @Step("Удаление записи из списка")
     public T deleteRecord(int rowNum) {
         table.getRows().get(rowNum).$x(".//button[./i[contains(@class, 'trash')]]").click();
         submitDeleteButton.click();
+        waitForSpinner();
         return waitListToLoad();
     }
 

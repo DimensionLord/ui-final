@@ -14,9 +14,9 @@ public class MyInfoPage extends BasePage<MyInfoPage> {
 
     @Step("Сохранение имени пользователя в стеш")
     public MyInfoPage saveUserNameToStash() {
-        String firstName = firstNameInput.getText();
-        String middleName = middleNameInput.getText();
-        String lastName = lastNameInput.getText();
+        String firstName = getValue(firstNameInput);
+        String middleName = getValue(middleNameInput);
+        String lastName = getValue(lastNameInput);
         String userName = String.join(" ", firstName, lastName);
         Stash.getInstance().putInStash("shortUserName", userName);
         Stash.getInstance().putInStash(

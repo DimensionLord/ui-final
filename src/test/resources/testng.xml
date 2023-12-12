@@ -1,18 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="orangehrmlive">
-    <groups>
-        <define name="screen">
-            <include name="admin"/>
-            <include name="pim"/>
-            <include name="claim"/>
-            <include name="recruitment"/>
-        </define>
-        <run>
-            <include name="screen"/>
-        </run>
-    </groups>
-
     <test name="PIM">
         <parameter name="targetPage" value="PIM"/>
         <classes>

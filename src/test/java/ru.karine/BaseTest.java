@@ -81,7 +81,7 @@ public abstract class BaseTest {
      * Общий метод для всех тестов, который обеспечивает авторизацию и переход к тестируемому экрану
      * автоматически получает имя пользователя, пароль, и url из свойств окружения
      */
-    @BeforeMethod(groups = "screen")
+    @BeforeMethod(alwaysRun = true)
     @Parameters({"targetPage"})
     public void moveTo(String targetPage) {
         String userName = getSystemProperty("UI_LOGIN");

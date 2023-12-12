@@ -29,7 +29,7 @@ public class AddRecruitmentCandidatePage extends FormPage<AddRecruitmentCandidat
 
 
     @SneakyThrows
-    @Step("Заполнение данных по подбору '{firstName} {middleName} {lastName} {Email} {Vacancy}'")
+    @Step("Заполнение данных по подбору '{firstName} {middleName} {lastName} {email} {vacancy}'")
     public AddRecruitmentCandidatePage fillForm(String firstName, String middleName, String lastName, String email, String keywords, String note, String vacancy) {
         TimeUnit.SECONDS.sleep(5);
         fillFields(

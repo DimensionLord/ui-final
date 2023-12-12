@@ -1,7 +1,6 @@
 package ru.karine.tests;
 
 import com.github.javafaker.Faker;
-import lombok.SneakyThrows;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.karine.BaseTest;
@@ -9,7 +8,7 @@ import ru.karine.page.admin.AddJobTitlePage;
 import ru.karine.page.recruitment.AddRecruitmentCandidatePage;
 import ru.karine.page.recruitment.AddRecruitmentVacancyPage;
 import ru.karine.page.screens.AdminPage;
-import ru.karine.page.screens.AuthPage;
+import ru.karine.page.screens.MyInfoPage;
 import ru.karine.page.screens.RecruitmentCandidatePage;
 import ru.karine.page.screens.RecruitmentVacancyPage;
 import ru.karine.utils.Stash;
@@ -22,7 +21,7 @@ public class RecruitmentTest extends BaseTest {
     RecruitmentCandidatePage recruitmentCandidatePage = new RecruitmentCandidatePage();
     RecruitmentVacancyPage recruitmentVacancyPage = new RecruitmentVacancyPage();
     AdminPage adminPage = new AdminPage();
-    AuthPage authPage = new AuthPage();
+    MyInfoPage myInfoPage = new MyInfoPage();
     AddRecruitmentCandidatePage addRecruitmentPage = new AddRecruitmentCandidatePage();
     AddRecruitmentVacancyPage addRecruitmentVacancyPage = new AddRecruitmentVacancyPage();
     AddJobTitlePage addJobTitlePage = new AddJobTitlePage();
@@ -31,20 +30,20 @@ public class RecruitmentTest extends BaseTest {
     public Object[][] provideRecruitmentCandidateData() {
         return new Object[][]{
                 {Faker.instance().elderScrolls().creature(),
-                        Faker.instance().book().title().replace('\'','`'),
-                        Faker.instance().leagueOfLegends().champion().replace('\'','`'),
-                        Faker.instance().name().firstName().replace('\'','`'),
-                        Faker.instance().name().lastName().replace('\'','`'),
+                        Faker.instance().book().title().replace('\'', '`'),
+                        Faker.instance().leagueOfLegends().champion().replace('\'', '`'),
+                        Faker.instance().name().firstName().replace('\'', '`'),
+                        Faker.instance().name().lastName().replace('\'', '`'),
                         Faker.instance().internet().emailAddress(),
-                        Faker.instance().ancient().god().replace('\'','`'),
-                        Faker.instance().hobbit().quote().replace('\'','`')}
+                        Faker.instance().ancient().god().replace('\'', '`'),
+                        Faker.instance().hobbit().quote().replace('\'', '`')}
         };
     }
 
     @DataProvider
     public Object[][] provideRecruitmentVacancyData() {
         return new Object[][]{
-                {Faker.instance().elderScrolls().creature().replace('\'','`'), Faker.instance().book().title().replace('\'','`')}
+                {Faker.instance().elderScrolls().creature().replace('\'', '`'), Faker.instance().book().title().replace('\'', '`')}
         };
     }
 
@@ -53,8 +52,9 @@ public class RecruitmentTest extends BaseTest {
             dataProvider = "provideRecruitmentVacancyData"
     )
     public void addRecruitmentVacancyTest(String jobTitle, String vacancy) {
-        authPage.stashUserName();
-        recruitmentCandidatePage.navigateToScreen("Admin");
+        myInfoPage.navigateToScreen("My Info")
+                .saveUserNameToStash()
+                .navigateToScreen("Admin");
         adminPage.navigate("Job", "Job Titles")
                 .addJob();
         addJobTitlePage.fillForm(jobTitle, null, null)
@@ -69,14 +69,15 @@ public class RecruitmentTest extends BaseTest {
                 .filterByVacancy(vacancy)
                 .checkRecordData(0, "Job Title", jobTitle)
                 .checkRecordData(0, "Vacancy", vacancy)
-                .checkRecordData(0, "Hiring Manager", Stash.getInstance().getFromStash("userName"))
+                .checkRecordData(0, "Hiring Manager", Stash.getInstance().getFromStash("fullUserName"))
                 .checkRecordData(0, "Status", "Active");
     }
 
     @Test(description = "Проверка добавления нового подбора", dataProvider = "provideRecruitmentCandidateData")
     public void addRecruitmentCandidateTest(String jobTitle, String vacancy, String firstName, String middleName, String lastName, String email, String keywords, String note) {
-        authPage.stashUserName();
-        recruitmentCandidatePage.navigateToScreen("Admin");
+        myInfoPage.navigateToScreen("My Info")
+                .saveUserNameToStash()
+                .navigateToScreen("Admin");
         adminPage.navigate("Job", "Job Titles")
                 .addJob();
         addJobTitlePage.fillForm(jobTitle, null, null)
@@ -84,7 +85,7 @@ public class RecruitmentTest extends BaseTest {
         adminPage.navigateToScreen("Recruitment");
         recruitmentVacancyPage.navigate("Vacancies")
                 .addVacancy();
-        addRecruitmentVacancyPage.fillForm(vacancy, jobTitle, Stash.getInstance().getFromStash("userName"))
+        addRecruitmentVacancyPage.fillForm(vacancy, jobTitle, Stash.getInstance().getFromStash("fullUserName"))
                 .submitForm();
         recruitmentCandidatePage.navigate("Candidates")
                 .addRecruitment();
@@ -93,7 +94,7 @@ public class RecruitmentTest extends BaseTest {
         recruitmentCandidatePage.navigate("Candidates")
                 .filterByFirstName(firstName)
                 .checkRecordData(0, "Vacancy", vacancy)
-                .checkRecordData(0, "Hiring Manager", Stash.getInstance().getFromStash("userName"))
+                .checkRecordData(0, "Hiring Manager", Stash.getInstance().getFromStash("fullUserName"))
                 .checkRecordData(0, "Status", "Application Initiated")
                 .checkRecordData(0, "Date of Application", LocalDate.now().format(DateTimeFormatter.ISO_DATE));
     }

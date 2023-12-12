@@ -15,7 +15,7 @@ public class AuthPage {
     private final static SelenideElement passwordInput = Selenide.$x("//input[@name='password']").as("Пароль");
     private final static SelenideElement loginButton = Selenide.$x("//button[@type='submit']").as("Войти");
     private final static SelenideElement userIcon = Selenide.$x("//header//img").as("Иконка профиля");
-    private final static SelenideElement userName = Selenide.$x("//header//p[@class='oxd-userdropdown-name']").as("Имя пользователя");
+
 
 
     @Step("Авторизация как {userName}")
@@ -31,13 +31,4 @@ public class AuthPage {
         userIcon.shouldBe(Condition.appear);
     }
 
-    /**
-     * Костыль
-     * Поскольку мы не знаем, под каким пользователем мы залогинимся и у нас нет доступа к списку менеджеров по подбору,
-     * используем имя текущего пользователя
-     */
-    @Step("Сохранение в Stash имени пользователя")
-    public void stashUserName() {
-        Stash.getInstance().putInStash("userName", userName.getText());
-    }
 }

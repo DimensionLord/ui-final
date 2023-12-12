@@ -60,8 +60,10 @@ public class BasePage<T extends BasePage<T>> {
     }
 
     @Step("Переход к экрану '{target}'")
-    public void navigateToScreen(String target) {
+    public T navigateToScreen(String target) {
         mainMenu.$x(".//a[.//span[text()='" + target + "']]").click();
+        waitForSpinner();
+        return (T) this;
     }
 
     /**
@@ -123,5 +125,14 @@ public class BasePage<T extends BasePage<T>> {
         navigate(target);
         subMenu.$x(".//li[normalize-space(.)='" + subTarget + "']").click();
         return (T) this;
+    }
+
+    /**
+     * Специальный метод для извлечения текста из чудесных инпутов hrm
+     * @param element чудесный инпут hrm
+     * @return текст чуденого инпута hrm
+     */
+    protected String getValue(SelenideElement element){
+        return  Selenide.executeJavaScript("return arguments[0]._value",element);
     }
 }

@@ -69,7 +69,7 @@ public class RecruitmentTest extends BaseTest {
                 .filterByVacancy(vacancy)
                 .checkRecordData(0, "Job Title", jobTitle)
                 .checkRecordData(0, "Vacancy", vacancy)
-                .checkRecordData(0, "Hiring Manager", Stash.getInstance().getFromStash("fullUserName"))
+                .checkRecordData(0, "Hiring Manager", Stash.getInstance().getFromStash("shortUserName"))
                 .checkRecordData(0, "Status", "Active");
     }
 

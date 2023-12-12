@@ -33,15 +33,15 @@ accumulate_results:
     - mkdir -p allure_history
 
 
-#    # устанавливаем архиватор
-#    - apk add unzip
-#    # получаем данные allure-results из предыдущего запуска джобы pages
-#    # - 'curl --location --output artifacts.zip "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/jobs/artifacts/master/download?job=pages&job_token=${CI_JOB_TOKEN}"'
-#    - 'curl --location --output artifacts.zip "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/jobs/artifacts/main/download?job=pages&job_token=$CI_JOB_TOKEN"'
-#    # распаковываем allure-results прошлых прогонов
-#    - unzip artifacts.zip
-#    - chmod -R 777 public
-#    - cp -r ./public/history ./target/allure-results
+    # устанавливаем архиватор
+    - apk add unzip
+    # получаем данные allure-results из предыдущего запуска джобы pages
+    # - 'curl --location --output artifacts.zip "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/jobs/artifacts/master/download?job=pages&job_token=${CI_JOB_TOKEN}"'
+    - 'curl --location --output artifacts.zip "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/jobs/artifacts/main/download?job=pages&job_token=$CI_JOB_TOKEN"'
+    # распаковываем allure-results прошлых прогонов
+    - unzip artifacts.zip
+    - chmod -R 777 public
+    - cp -r ./public/history ./target/allure-results
 
 
 

@@ -62,7 +62,7 @@ public class RecruitmentTest extends BaseTest {
         adminPage.navigateToScreen("Recruitment");
         recruitmentVacancyPage.navigate("Vacancies")
                 .addVacancy();
-        addRecruitmentVacancyPage.fillForm(vacancy, jobTitle, Stash.getInstance().getFromStash("userName"))
+        addRecruitmentVacancyPage.fillForm(vacancy, jobTitle, Stash.getInstance().getFromStash("fullUserName"))
                 .submitForm();
         recruitmentVacancyPage.navigate("Vacancies")
                 .waitListToLoad()
